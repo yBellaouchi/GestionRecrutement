@@ -1,0 +1,23 @@
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello M. {{email.toName|upper }} </h1>
+    <h3>Subject : {{email.subject}} </h3>
+    <p>
+
+Dear {{email.toName|upper }},
+Im contacting  you to inform you that the job interview we had scheduled for {{candidateName|upper}} 
+has been changed and will be postponed until {{date}} <br>
+We have contacted the candidate to inform him about this delay. 
+
+   </p>
+   <div>
+   <img src="{{ email.image('@img/sql_logo.png') }}" alt="Logo" style="width:350px">
+   </div>
+</div>
+{% endblock %}

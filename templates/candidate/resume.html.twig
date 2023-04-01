@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidate{% endblock %}
+ 
+
+{% block body %}
+    
+    <h3>{{ candidate.FullName }}</h3>
+
+  <iframe src="{{ asset('uploads/headshots/'~ candidate.resume) }}" style="text-align:center;"  width="800" height="600" align="center" alt="image" />
+                </iframe>
+{% endblock %}

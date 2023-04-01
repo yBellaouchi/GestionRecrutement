@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Theme index{% endblock %}
+
+{% block body %}
+    <h1>Theme index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>NoteTheme</th>
+                <th>Satisfaction</th>
+                <th>state </th> 
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for theme in themes %}
+            <tr>
+                <td>{{ theme.id }}</td>
+                <td>{{ theme.name }}</td>
+                <td>{{ theme.noteTheme }}</td>
+                <td>{{ theme.satisfaction }}</td>
+                   {# <td>{{ theme.Interview.getState().state }}</td>    #}
+                    {% if Interview.getInterview().state is defined %}
+                      
+                                 <td>{{ Interview.getInterview().state.value}}</td>
+                        {% else %}
+            
+                                <td> -- </td>
+                      {% endif %}  
+                <td>
+                    <a href="{{ path('app_theme_show', {'id': theme.id}) }}">show</a>
+                    <a href="{{ path('app_theme_edit', {'id': theme.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_theme_new') }}">Create new</a>
+
+    {# {{ include('theme/_form.html.twig') }} #}
+{% endblock %}

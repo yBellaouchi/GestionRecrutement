@@ -1,0 +1,12 @@
+{# Modal Delete #}
+    {% extends 'base.html.twig' %}
+
+{% block body %}
+  <h2>{{fullName}}</h2>
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="add-level"/>
+    {# <button class="btn">{{ button_label|default('Save') }}</button> #}
+{{ form_end(form) }}
+
+{% endblock  %}

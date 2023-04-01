@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidate index{% endblock %}
+
+{% block body %}
+    
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Candidates</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="/css/all.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+
+<!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+ 
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  
+
+  <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+   
+      <!-- Main content -->
+      <section class="content col-md-12" style="margin-left: -15%;">
+  
+      <!-- Default box -->
+      <div class="card card-solid">
+    
+        <div class="card-body pb-0">
+          <div class="text-right" >
+    <a href="{{ path('app_candidate_new') }}"class="btn btn-secondary" ><i class="bi bi-person-plus-fill"></i> <span></span></a>
+    </div>
+          <div class="row">
+               {% for candidate in candidates %}
+            <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column">
+              <div class="card bg-light d-flex flex-fill">
+                <div class="card-header text-muted border-bottom-0">
+                  Candidate
+                </div>
+                <div class="card-body pt-0">
+                  <div class="row">
+                    <div class="col-7">
+                      <h2 class="lead"><b>{{ candidate.FullName }}</b></h2>
+                      {%if candidate.Level.value is defined%}
+                      <p class="text-muted text-sm"><b>Level: </b> {{ candidate.Level.value }}</p>
+                      {%endif%}
+                      </div>
+                    <div class="col-5 mb-4 text-center">
+                      <img src="{{ asset('uploads/headshots/'~ candidate.Headshot) }}"  alt="candidate" class="img-circle img-fluid">
+                    </div>
+                    <div>
+                    <ul class="ml-4 mb-0 fa-ul text-muted">
+                        <li class="small"><i class="lnr lnr-envelope"></i></span> Email: {{ candidate.Email }}</li>
+                        <li class="small"><i class="lnr lnr-phone-handset"></i></span> Phone #: + 212 - {{ candidate.Telephone }}</li>
+                      </ul>
+                      </div>
+                  </div>
+                </div>
+                <div class="card-footer">
+                  <div class="text-right">
+
+                    <a href="{{ path('app_candidate_edit', {'id': candidate.id}) }}"class="btn btn-sm bg-teal">
+                      <span><i class="lnr lnr-pencil"></i></span>  Edit
+                    </a>
+
+                    <a  href="{{ path('app_candidate_show', {'id': candidate.id}) }}"class="btn btn-sm btn-primary">
+                    {# <span><i class="lnr lnr-eye"></i> </span> #}
+                    <i class="lnr lnr-eye"></i>    Show
+                    </a>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+                {% endfor %}
+           
+          </div>
+        </div>
+        <!-- /.card-body -->
+        <!-- /.card-footer -->
+      </div>
+      <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  {# <footer class="main-footer">
+    <div class="float-right d-none d-sm-block">
+      <b>Version</b> 3.2.0
+    </div>
+    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+  </footer> #}
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="/js/bootstrap.bundlee.min.js"></script>
+<!-- AdminLTE App -->
+<script src="/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+{# <script src="/js/demo.js"></script> #}
+</body>
+</html>
+   
+{% endblock %}

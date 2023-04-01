@@ -1,0 +1,25 @@
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hello M. {{email.toName|upper }} </h1>
+    <h3>Subject : {{email.subject}} </h3>
+    <p>
+Hi {{candidateName|upper }}, <br>
+Thank you for applying to the position at SQLI Oujda. We’ve reviewed your application materials carefully, and we’re excited to invite you to interview for the role! 
+Your interview will be conducted mand last roughly 45 minute . You’ll be speaking with {{ InterlocutorName }}, our technical expert here at SQLI Oujda.
+Thanks again for your interest in joining the SQLI team! We’re looking forward to speaking with you.<br>
+Best,<br>
+-Data :{{date}}  <br>
+-Location :Complexe Technologique SQLI، Bd Mohammed VI, Oujda 60000 <br>
+-Interviewe title :{{title}}
+   </p>
+   <div>
+   <img src="{{ email.image('@img/sql_logo.png') }}" alt="Logo" style="width:300px">
+   </div>
+</div>
+{% endblock %}

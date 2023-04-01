@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interview{% endblock %}
+
+{% block body %}
+    {# <h1>Interview</h1> #}
+ <!-- Main content -->
+    <section class="content">     
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-9" style="margin:auto;">
+
+            <!-- Profile Image -->
+            <div class="card card-secondary card-outline">
+              <div class="card-body box-profile">
+              <h3 class="text-center">Interview</h3>
+              <div>
+              <div>
+                <div class="float-right col-3">
+                <img class="profile-user-img img-fluid img-circle float-right" 
+                src="{{ asset('uploads/headshots/'~ interview.interlocutor.Headshot) }}" alt="image"  />
+                 {# <p class="text-muted text-right float-right col-3" >Interlocutor</p></br> #}
+                 </div>
+                 <div class="col-3" >
+                <img class="profile-user-img img-fluid img-circle float-left " 
+                src="{{ asset('uploads/headshots/'~ interview.candidate.Headshot) }}" alt="image" /></br>
+                 {# <p class="text-muted text-left float-left " >Candidte</p> #}
+                 </div>
+                </div>
+                 <div style="margin-left:20%">
+                <ul class="list-group list-group-unbordered ">
+                  {# <li class="list-group-item">
+                    <b>FullName</b> <a class="float-right text-secondary ">{{ candidate.FullName }}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Email</b> <a class="float-right text-secondary">{{ candidate.Email }}</a>
+                  </li> #}
+                  <li class="list-group-item ">
+                    <b>Date</b> <a class="float-right text-secondary">{{ interview.date ? interview.date|date('Y-m-d H:i:s') : '' }}</a>
+                  </li>
+                  <li class="list-group-item ">
+                    <b>Candidate</b> <a class="float-right text-secondary">{{interview.candidate.fullname}}</a>
+                  </li>
+                  <li class="list-group-item ">
+                    <b>Interlocutor</b> <a class="float-right text-secondary">{{interview.interlocutor.fullname}}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Title</b>  <a class="float-right text-secondary"><b>{{ interview.title }}</b></a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Note</b> <a class="float-right text-secondary">{{ interview.note }}</a>
+                  </li>
+                  <li class="list-group-item ">
+                    <b>Appreciation</b> <a class="float-right text-secondary">{{ interview.appreciation ? 'Yes' : 'No' }}</a>
+                  </li>
+                  <li class="list-group-item ">
+                    <b>State</b> <a class="float-right text-secondary">{{ interview.state.value }}</a>
+                  </li>
+                 
+                  
+                </ul>
+                </div>
+                <div class="text-center">
+                <a href="{{ path('app_interview_edit', {'id': interview.id}) }}"
+                 class="btn btn-secondary"><b>Edit</b></a>
+                <a href="{{ path('app_interview_edit_state', {'id': interview.id}) }}"
+                 class="btn btn-secondary "><b>Edit State</b></a>
+                <a href="{{ path('app_interview_themes', {'id': interview.id}) }}"
+                 class="btn btn-secondary "><b>Pass interview</b></a>
+                 <a  href="{{ path('app_interview_delete', {'id': interview.id}) }}"
+                 class="btn btn-secondary "><b>Delete</b></a>
+                 
+             </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+      <!-- /.card -->
+          </div>
+          
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}

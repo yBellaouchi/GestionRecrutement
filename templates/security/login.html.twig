@@ -1,0 +1,80 @@
+ <!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/all.min.css"> 
+  <link rel="stylesheet" href="css/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="css/adminlte.min.css">
+  <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+ <body class="hold-transition login-page">
+
+<div class="login-logo">
+    <a href="../../index2.html"><b>sign in</b></a>
+</div>
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+
+
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+
+      	<div class="login-top" style="text-align:center;">
+						<img src="img/login.png" style="width:85px;"> 
+			 	</div>
+    
+     <div class="input-group mb-3">
+     <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Email" required autofocus>
+
+      <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="lnr lnr-envelope"></span>
+            </div>
+          </div>
+      </div>
+
+    <div class="input-group mb-3">
+    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Password" required>
+
+       <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="lnr lnr-lock"></span>
+            </div>
+          </div>
+        </div>
+
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+    <button class="btn btn-primary btn-block" type="submit">Sign in</button>
+    <p class="mb-1" style="margin-top:10px">
+        <a href="{{path('app_forgot_password_request')}}">I forgot my password</a>
+    </p>
+    <p class="mb-1"style="margin-top:10px">
+        <a href="{{path('app_register')}}">Register a new membership</a>
+     </p>
+
+</form>
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="js/adminlte.min.js"></script>
+
+</body>
+</html> 
+
+{% endblock %}
+

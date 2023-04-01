@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User{% endblock %}
+
+{% block body %}
+ <section class="content">     
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-9" style="margin:auto;">
+
+            <!-- Profile Image -->
+            <div class="card card-secondary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                <img class="profile-user-img img-fluid img-circle" 
+                src="{{ asset('uploads/headshots/'~ user.Headshot) }}" alt="image" />
+                 </div>
+
+                <h3 class="profile-username text-center">{{ user.FullName }}</h3>
+
+          {% if (user.Roles == ["ROLE_INTERLOCUTOR"]) %}
+              <p class="text-muted text-center">Interlocutor</p>
+          {% endif %}
+          {% if (user.Roles == ["ROLE_CANDIDATE"]) %}
+              <p class="text-muted text-center">Candidate</p>
+          {% endif %}
+              
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>FullName</b> <a class="float-right text-secondary ">{{ user.FullName }}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Email</b> <a class="float-right text-secondary">{{ user.Email }}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Phone</b> <a class="float-right text-secondary">{{ user.Telephone }}</a>
+                  </li>
+                 </ul>
+               <div class="text-center">
+                <a href="{{ path('app_user_index') }}"
+                 class="btn btn-secondary"><b>back to list</b></a>
+                <a href="{{ path('app_user_edit', {'id': user.id}) }}"
+                 class="btn btn-secondary "><b>Edit</b></a>
+                 <a  href="{{ path('app_user_delete', {'id': user.id}) }}"
+                 class="btn btn-secondary "><b>Delete</b></a>
+               </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            
+            <!-- /.card -->
+          </div>
+          
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    
+{% endblock %}

@@ -1,0 +1,62 @@
+version: '3'
+services:
+  db:
+    image: mysql
+    container_name: db_docker_project_intership
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    volumes:
+       - dbdata:/var/lib/mysql
+    networks:
+     - dev
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin_docker_project_intership
+    links:
+     - db
+    ports:
+    - 8080:80
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: '123456'
+      PMA_HOST: db
+    networks:
+     - dev
+  maildev:
+    image: maildev/maildev
+    container_name: maildev_docker_project_intership
+    command: bin/maildev --web 80 --smtp 25 --hide-extensions STARTTLS
+    ports:
+     - "8083:80"
+    restart: always
+    networks:
+     - dev
+
+  mailcatcher:
+    image: yappabe/mailcatcher
+    container_name: stage_mail
+    ports:
+     - "1025:1025"
+     - "1080:1080"
+    restart: always
+    networks:
+     - dev
+
+      
+  www:
+    build: php
+    container_name: www_docker_project_intership
+    ports:
+     - "8084:80"
+    volumes:
+     - ./php/vhosts:/etc/apache2/sites-enabled
+     - ./:/var/www
+    restart: always
+    networks:
+     - dev 
+networks:
+  dev:
+volumes:
+  dbdata:
+
+

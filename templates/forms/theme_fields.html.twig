@@ -1,0 +1,45 @@
+{% block _interview_themes_themes_entry_row %}
+    <div class="theme_items">
+        <div class="row">
+            <div class="col-lg-3 col-12">
+                <div class="form-group">
+                    {{ form_label(form.subject) }}
+                    {{ form_widget(form.subject) }}
+                    {{ form_help(form.subject) }}
+                    {{ form_errors(form.subject) }}
+                </div>
+            </div>
+            <div class="col-lg-3 col-12">
+                <div class="form-group">
+                    {{ form_label(form.noteTheme) }}
+                    {{ form_widget(form.noteTheme) }}
+                    {{ form_help(form.noteTheme) }}
+                    {{ form_errors(form.noteTheme) }}
+                </div>
+            </div>
+            <div class="col-lg-3 col-12">
+                <div class="form-group">
+                    {{ form_label(form.satisfaction) }}
+                    {{ form_widget(form.satisfaction) }}
+                    {{ form_help(form.satisfaction) }}
+                    {{ form_errors(form.satisfaction) }}
+                </div>
+            </div>
+            <button type="button" class="btn btn-light delete-theme-item  ">
+           {# <i class="material-icons" data-toggle="tooltip" title="Delete">delete</i> #}
+           <span class="bi bi-trash"></span>
+        </button>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+{% block _interview_themes_level_requested_entry_row %}
+ <div class="col-lg-6 col-12" >
+                <div class="form-group">hh
+                    {{ form_label(form.level_requested) }}
+                    {{ form_widget(form.level_requested, {'attr': {'class': 'form-control'}}) }}
+                    {{ form_help(form.level_requested) }}
+                    {{ form_errors(form.level_requested) }}
+                </div>
+  </div>
+{% endblock %}

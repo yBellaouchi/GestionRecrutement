@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Interview index{% endblock %}
+
+{% block body %}
+    <section class="ftco-section">
+		<div class="container">
+        <div class="row justify-content-center">
+				<div class="col-md-6 text-center mb-5">
+					<h2 class="heading-section">Interview index</h2>
+				</div>
+		</div>
+<div class="row">
+				<div class="col-md-12">
+					<div class="table-wrap">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Candidate</th>
+                <th>Date</th>
+                <th>Interlocutor</th>
+                <th>Note</th>
+                <th>Appreciation</th>
+                <th>Title</th>
+                <th>State</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for interview in interviews %}
+            <tr>
+              
+                <td>{{ interview.id }}</td>
+                <td class="d-flex align-items-center">
+                <div class="img" style="background-image: url(images/person_1.jpg);">
+               <a href="{{ path('app_candidate_show', {'id': interview.candidate.id}) }}" class="text-secondary">  <img src="{{ asset('uploads/headshots/'~ interview.candidate.headshot) }}" class="img-circle " style="width:40px"></a>
+                </div>
+                    <div class="pl-3 ">
+                 <a href="{{ path('app_candidate_show', {'id': interview.candidate.id}) }}" class="text-secondary">    <span>{{interview.candidate.fullname}}</span></a>
+                    </div>
+                </td>
+
+                <td>{{ interview.date ? interview.date|date('Y-m-d H:i:s') : '' }}</td>
+
+                <td class="d-flex align-items-center">
+                    <div class="img" style="background-image: url(images/person_1.jpg);">
+                    {% if interview.interlocutor.headshot   is defined %}
+                 <a href="{{ path('app_user_show', {'id': interview.interlocutor.id}) }}" class="text-secondary">     <img src="{{ asset('uploads/headshots/'~ interview.interlocutor.headshot) }}"   class="img-circle " style="width:40px"  ></a>
+
+                    {% else %}
+                    <div class="image">
+                        <img src="/img/user_inconnu.webp" class="img-circle " style="width:40px" >
+                      </div>
+                      {% endif %}  
+                    </div>
+                    <div class="pl-3 ">
+                   <a href="{{ path('app_user_show', {'id': interview.interlocutor.id}) }}" class="text-secondary">  <span>{{interview.interlocutor.fullname}}</span></a>
+                    </div>
+                </td>
+                {% if interview.note is defined and interview.appreciation is defined %}
+                <td>{{ interview.note }}</td>
+                <td>{{ interview.appreciation ? 'Yes' : 'No' }}  <a href="{{ path('app_interview_edit_appreciation', {'id': interview.id}) }}" class="text-secondary"><span><i class="lnr lnr-pencil"></i></span></a></td>
+                   {% else %}
+                   <td> -- </td>
+                   <td> -- </td>
+                  {% endif %}
+                <td>{{ interview.title }}</td>
+                <td class="status"><span class="active">{{ interview.state.value }}</span> </td>
+                <td>
+                    <a href="{{ path('app_interview_show', {'id': interview.id}) }}"class="text-secondary"> <span><i class="lnr lnr-eye"></i></span></a>
+                    <a href="{{ path('app_interview_edit', {'id': interview.id}) }}" class="text-secondary"><span><i class="lnr lnr-pencil"></i></span></a>
+                </td>
+   
+            </tr>
+        {% endfor %}
+        </tbody>
+        
+    </table>
+</div>
+</div>
+</div>
+</div>
+</section>
+    <a href="{{ path('app_interview_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    {% block stylesheets %}
+ {{ parent() }}
+ <link rel="stylesheet" href="/css/style_form.css">
+{% endblock %}
+
+{# 
+      {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.password, {
+            label: 'Password'
+        }) }}
+         {{ form_row(registrationForm.fullName) }}
+          {{ form_row(registrationForm.telephone) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }} #}
+  {{ form_start(registrationForm) }}
+  <div class="wrapperr" style="background-color:#ffffff">
+    <div class="innerr">
+      <h3>Register</h3>
+      <div class="form-holder">
+        <span class="lnr lnr-user"></span>
+        {{ form_widget(registrationForm.fullName,{'attr': {'class': 'form-controll text-center font-weight-normal','placeholder':'FullName'}}) }}
+        
+      </div>
+      <div class="form-holder col">
+        <span class="lnr lnr-phone-handset"></span>
+        {{form_widget(registrationForm.telephone,{'attr': {'class': 'form-controll text-center font-weight-normal','placeholder':'Phone'}})}}
+      </div> 
+      <div class="form-holder">
+        <span class="lnr lnr-envelope"></span>
+        {{ form_widget(registrationForm.email,{'attr': {'class': 'form-controll text-center font-weight-normal','placeholder':'Email'}}) }}
+      </div>
+      <div class="form-holder">
+       &emsp;&emsp;&emsp; <span class="lnr lnr-lock"></span>
+        {{ form_widget(registrationForm.password,{'attr': {'class': 'form-controll text-center font-weight-normal','placeholder':'Password'}}) }}
+      </div>
+      <div class="custom-file">
+        {{form_widget(registrationForm.headshot, {'attr': {'class': 'custom-file-input'}})}}
+        <label class="custom-file-label" for="customFileLang"><span class="lnr lnr-picture"></span>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Headshot</label>
+      </div>
+         </br><br>
+       <div class="form-holder">
+        <span class="lnr lnr-users"></span>
+        {{ form_widget(registrationForm.role,{'attr': {'class': 'form-controll text-center font-weight-normal','placeholder':'Role'}}) }}
+      </div>
+    <br>
+       <div class="text-center" >   
+                <button class="btn btn-secondary" style="font-weight: bolder;">{{ button_label|default('Register') }}</button>   
+       </div>
+ {{ form_end(registrationForm) }}
+{% endblock %}
+  {# {% block navbar %}
+{% endblock %}  #}

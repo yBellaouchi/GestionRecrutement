@@ -1,0 +1,18 @@
+{# {% form_theme form with ['forms/candidate_fields.html.twig'] %} #}
+{% extends 'base.html.twig' %}
+{% block title %}Edit Candidate{% endblock %}
+{% block body %}
+       {{ include('candidate/_form.html.twig',{'button_label':'Update'}) }}
+        <div class="text-center" >   
+                 <button  class="btn btn-secondary ">
+                 <a  href="{{ path('app_candidate_index') }}" class="btn btn-secondary ">
+                 <b>Back</b></a> </button> 
+                  <button  class="btn btn-secondary ">
+                 <a  href="{{ path('app_candidate_delete', {'id': candidate.id}) }}" class="btn btn-secondary ">
+                 <b>Delete</b></a> </button>  
+       </div>
+{% endblock %}
+  {% block stylesheets %}
+ {{ parent() }}
+<link rel="stylesheet" href="/css/style_form.css">
+{% endblock %}

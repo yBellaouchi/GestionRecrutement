@@ -1,0 +1,68 @@
+
+{% extends 'base.html.twig' %}
+{% form_theme form 'forms/theme_fields.html.twig' %}
+{% block title %}Interview{% endblock %}
+
+{% block body %}
+    <h1>Interview</h1>
+   
+{# <h3>Candidate :{{interview.candidate.fullname}}</h3> #}
+<div >
+ {{ form_start(form, {'attr': {'class': 'form-ad'}}) }}
+     <div>
+     <div class="float-left">
+     {{form_row(form.level_requested)}}
+     </div>
+     
+     
+        <div class="text-center"> <button type="button"
+        class="add-another-collection-widget"
+        data-list-selector="#theme-fields-list">Add another theme</button></div>
+     </div>
+   
+    <br>
+    <ul id="theme-fields-list"
+        data-prototype="{{ form_row(form.themes.vars.prototype)|e }}"
+        data-widget-tags="{{ '<li></li>'|e }}"
+        data-widget-counter="{{ form.themes|length }}">
+        <div class="theme_items">
+       
+    {% for theme in form.themes %}
+        <li>
+            {{form_row(theme)}}
+        </li>
+    {% endfor %}  
+     
+ </div>
+</ul>
+ <div class="row align-items-center justify-content-center">
+    <div class="col-lg-6 col-md-5 col-12">
+<button type="submit"class="btn">{{ button_label|default('Save') }}</button>
+
+    </div>
+    </div>
+{# <button type="submit" ></button> #}
+</div>
+{{ form_end(form) }}
+{% endblock %} 
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+$(document).ready(function () {
+    $('.add-another-collection-widget').click(function (e) {
+        var list = $($(this).attr('data-list-selector'));
+        var counter = list.data('widget-counter') || list.children().length;
+        var newWidget = list.attr('data-prototype');
+        newWidget = newWidget.replace(/__name__/g, counter);
+        counter++;
+        list.data('widget-counter', counter);
+        var newElem = $(list.attr('data-widget-tags')).html(newWidget);
+        newElem.appendTo(list);
+      });
+    $('#theme-fields-list').on('click', '.delete-theme-item', function(){
+            $(this).parent().remove();
+        });
+});
+</script>
+{% endblock %}
+

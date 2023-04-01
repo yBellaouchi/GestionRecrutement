@@ -1,0 +1,100 @@
+{{ form_start(form) }}
+  <div class="wrapperr" style="background-color:#ffffff;margin-top:-5%;">
+    <div class="innerr">
+      <h3>Interview</h3>
+       {% if form.interlocutor is defined  %}
+      {{ form_label(form.interlocutor) }}
+      <div class="form-holder">
+        <span class="lnr lnr-user"></span>
+        {{ form_widget(form.interlocutor, {'attr': {'class': 'form-controll text-center font-weight-normal ','placeholder':'Interlocutor'}}) }}
+      </div>
+       {% endif %}  
+        {% if form.candidate is defined  %}
+       {{ form_label(form.candidate) }}
+      <div class="form-holder">
+      <span class="lnr lnr-user"></span>
+        {{ form_widget(form.candidate, {'attr': {'class': 'form-controll text-center font-weight-normal ','placeholder':'Candidate'}}) }}
+        {{ form_help(form.candidate) }}
+        {{ form_errors(form.candidate) }} 
+      </div>
+      {% endif %} 
+      {% if form.date is defined  %}
+    {{ form_label(form.date) }}  
+      <div class="form-holder">
+        <span class="lnr lnr-calendar-full"></span>
+        {{ form_widget(form.date,{'attr': {'class': 'form-controll text-center font-weight-normal ','placeholder':'DateTime'}}) }}
+        {{ form_help(form.date) }}
+        {{ form_errors(form.date) }}
+      </div>
+       {% endif %} 
+       {% if form.title is defined  %}
+      {{ form_label(form.title) }}
+      <div class="form-holder">
+        <span class="lnr lnr-menu-circle"></span>
+        {{ form_widget(form.title,{'attr': {'class': 'form-controll  text-center font-weight-normal  ','placeholder':'Title'}}) }}
+        {{ form_help(form.title) }}
+        {{ form_errors(form.title) }}
+      </div>
+      {% endif %} 
+      {% if form.appreciation is defined  %}
+      {{ form_label(form.appreciation) }}
+      <div class="form-holder">
+        <span class="lnr lnr-checkmark-circle"></span>
+        {{ form_widget(form.appreciation,{'attr': {'class': 'form-controll text-center font-weight-normal  ','placeholder':'Apperciation','style':'width: 173% ;height: 20px;'}}) }}
+      </div>
+      {% endif %}
+       {% if form.state is defined  %}
+      {{ form_label(form.state) }}
+      <div class="form-holder">
+        <span class="lnr lnr-history"></span>
+        {{ form_widget(form.state,{'attr': {'class': 'form-controll text-center font-weight-normal  ','placeholder':'State'}}) }}
+      </div>
+      {% endif %} 
+
+     
+       <div class="text-center" >   
+                <button class="btn btn-secondary" style="font-weight: bolder;">{{ button_label|default('Add') }}</button>   
+       </div>
+      </div>
+    </div>
+{{ form_end(form) }}
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> 
+    {# <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet"/>
+    
+    
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.js"></script>   #}
+
+    {# <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> #}
+
+           
+<script>
+{# jQuery('#datetimepicker').datetimepicker({
+  format:'d.m.Y H:i',
+  inline:true,
+  lang:'ru'
+}); #}
+{# jQuery('#datetimepicker').datetimepicker(); #}
+      $(document).ready(function()
+    {
+     $('.select2').select2();
+    }); 
+
+
+          $(document).ready(function() {
+           $('.js-datepicker').datetimepicker({
+             format:'d/m/Y H:m:s'
+            });
+        });  
+</script>  
+
+
+
+
+

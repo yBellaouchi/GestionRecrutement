@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Candidate{% endblock %}
+ 
+
+{% block body %}
+
+   <!-- Main content -->
+    <section class="content">     
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-9" style="margin:auto;">
+
+            <!-- Profile Image -->
+            <div class="card card-secondary card-outline">
+              <div class="card-body box-profile">
+                <div class="text-center">
+                <img class="profile-user-img img-fluid img-circle" 
+                src="{{ asset('uploads/headshots/'~ candidate.Headshot) }}" alt="image" />
+                 </div>
+
+                <h3 class="profile-username text-center">{{ candidate.FullName }}</h3>
+
+                <p class="text-muted text-center">Candidate</p>
+
+                <ul class="list-group list-group-unbordered mb-3">
+                  <li class="list-group-item">
+                    <b>FullName</b> <a class="float-right text-secondary ">{{ candidate.FullName }}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Email</b> <a class="float-right text-secondary">{{ candidate.Email }}</a>
+                  </li>
+                  <li class="list-group-item">
+                    <b>Phone</b> <a class="float-right text-secondary">{{ candidate.Telephone }}</a>
+                  </li>
+                  {%if candidate.Level.value is defined%}
+                  <li class="list-group-item">
+                    <b>Level</b> <a class="float-right text-secondary">{{ candidate.Level.value }}</a>
+                  </li>
+                  {%endif%}
+                  <li class="list-group-item">
+                    <b>Resume</b> <a href="{{ path('app_candidate_resume', {'id': candidate.id}) }}" class="float-right text-secondary"><b>click here</b></a>
+                  </li>
+                </ul>
+              <div class="text-center">
+                <a href="{{ path('app_candidate_index') }}"
+                 class="btn btn-secondary"><b>back to list</b></a>
+                <a href="{{ path('app_candidate_edit', {'id': candidate.id}) }}"
+                 class="btn btn-secondary "><b>Edit</b></a>
+                <a  href="{{ path('app_candidate_delete', {'id': candidate.id}) }}"
+                 class="btn btn-secondary "><b>Delete</b></a>
+               </div>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            
+            <!-- /.card -->
+          </div>
+          
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    
+    
+         {# {{ include('candidate/add_level.html.twig') }} #}
+
+{% endblock %}
